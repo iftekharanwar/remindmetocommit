@@ -1,0 +1,154 @@
+{
+  "ideas": [
+    {
+      "title": "Smart Bookmark Manager with Tags & Search",
+      "description": "Build a Chrome/Firefox extension that saves bookmarks with automatic tag suggestions based on page content. Include full-text search and organize by categories.",
+      "techStack": "JavaScript, Browser Extension API, IndexedDB",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Personal Finance Tracker with Budget Alerts",
+      "description": "Track expenses, set monthly budgets per category, and get alerts when approaching limits. Visualize spending patterns with charts.",
+      "techStack": "React/Vue, Chart.js, LocalStorage/SQLite",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Pomodoro Timer with Task Integration",
+      "description": "A productivity timer that integrates with your task list. Track how much time you spend on each task and generate productivity reports.",
+      "techStack": "Electron/Web App, Node.js, JSON storage",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "GitHub Issue Template Generator",
+      "description": "Create custom issue templates for GitHub repos with a visual editor. Export as markdown files ready to use in .github/ISSUE_TEMPLATE/",
+      "techStack": "React, Markdown parser, File export",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Automated Screenshot Organizer",
+      "description": "Monitors your screenshots folder, uses OCR to extract text, and auto-organizes them into folders based on content (receipts, code snippets, memes, etc.)",
+      "techStack": "Python, Tesseract OCR, Watchdog library",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Multi-Language Code Snippet Manager",
+      "description": "Save and search code snippets with syntax highlighting, tags, and categories. Export snippets as gists or markdown files.",
+      "techStack": "Electron/Web, Monaco Editor, IndexedDB",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Local Password Strength Analyzer",
+      "description": "Offline tool that checks password strength, suggests improvements, and generates secure passwords. Includes breach database check without sending data online.",
+      "techStack": "JavaScript/Python, zxcvbn library, Have I Been Pwned API (k-anonymity)",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Meeting Notes Extractor from Video",
+      "description": "Upload recorded meeting videos, extract audio, transcribe using speech-to-text, and summarize key points and action items.",
+      "techStack": "Python, FFmpeg, Whisper AI, OpenAI API (or local models)",
+      "difficulty": "Hard"
+    },
+    {
+      "title": "Habit Tracker with Streak Visualization",
+      "description": "Track daily habits with calendar heatmap (GitHub-style), send reminders, and show longest streaks. Export data as CSV.",
+      "techStack": "React/Vue, D3.js/Chart.js, Local storage",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Smart Shopping List with Price History",
+      "description": "Add items to shopping list, track where you bought them and at what price. Get alerts when prices drop or items go on sale.",
+      "techStack": "React Native/Flutter, SQLite, Web scraping (optional)",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Clipboard History Manager",
+      "description": "Keep history of everything you copy (text, images, files). Search through history, pin favorites, and sync across devices.",
+      "techStack": "Electron, Node.js, SQLite, System clipboard API",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Local Markdown Wiki with Backlinks",
+      "description": "Personal wiki using markdown files with automatic backlink detection (like Obsidian). Graph view of note connections.",
+      "techStack": "Node.js/Python, Markdown parser, D3.js for graph",
+      "difficulty": "Hard"
+    },
+    {
+      "title": "Custom URL Shortener with Analytics",
+      "description": "Self-hosted URL shortener with click tracking, geographic data, referrer info, and QR code generation.",
+      "techStack": "Node.js/Flask, SQLite, QR library",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Code Review Checklist Generator",
+      "description": "Based on programming language and project type, generate customized code review checklists. Track review progress.",
+      "techStack": "React, JSON templates, LocalStorage",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "File Deduplicator with Hash Comparison",
+      "description": "Scan directories for duplicate files using hash comparison. Preview duplicates and safely delete or move them.",
+      "techStack": "Python/Node.js, Crypto libraries, File system API",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Reading List Manager with Progress Tracking",
+      "description": "Track books/articles you want to read, current page/chapter, reading speed, and estimated completion time.",
+      "techStack": "React/Vue, LocalStorage/SQLite, Chart.js",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "System Resource Monitor Dashboard",
+      "description": "Real-time dashboard showing CPU, RAM, disk usage, network activity, and running processes. Set alerts for high usage.",
+      "techStack": "Electron, Chart.js, Node.js system libraries",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Git Commit Message Template Tool",
+      "description": "Interactive CLI tool that helps write better commit messages following conventional commits. Integrates with git hooks.",
+      "techStack": "Node.js CLI, Inquirer.js, Git hooks",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Recipe Scaling Calculator",
+      "description": "Input a recipe, specify serving size change, and automatically scale all ingredient quantities. Save modified recipes.",
+      "techStack": "React/Vue, Unit conversion library, LocalStorage",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "DNS Cache Monitor & Flusher",
+      "description": "View current DNS cache, flush specific entries or all, and monitor DNS resolution times for debugging.",
+      "techStack": "Python/Node.js, System DNS commands, GUI framework",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Browser Tab Session Manager",
+      "description": "Save current browser tab sessions with names, restore them later. Useful for different work contexts.",
+      "techStack": "Browser Extension, JavaScript, Browser Storage API",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Regex Tester with Common Patterns Library",
+      "description": "Test regex patterns with real-time matching, save frequently used patterns, and browse library of common regex (email, phone, etc.)",
+      "techStack": "React/Vue, Monaco Editor, LocalStorage",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Local Image Compressor Batch Tool",
+      "description": "Drag and drop images for batch compression. Choose quality level, format conversion, and see file size savings.",
+      "techStack": "Electron, Sharp/Jimp library, File system API",
+      "difficulty": "Medium"
+    },
+    {
+      "title": "Terminal Command Cheatsheet Manager",
+      "description": "Save commonly used terminal commands with descriptions and tags. Quick search and copy to clipboard.",
+      "techStack": "CLI tool (Node.js/Python), JSON storage, Clipboard API",
+      "difficulty": "Easy"
+    },
+    {
+      "title": "Focus Mode Website Blocker",
+      "description": "Block distracting websites during focus sessions. Schedule blocked periods and track productivity time.",
+      "techStack": "Browser Extension, JavaScript, Chrome Storage API",
+      "difficulty": "Medium"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+name: Daily GitHub Commit Reminder
+
+on:
+  schedule:
+    # Runs at 8:00 PM IST (14:30 UTC) every day
+    - cron: '30 14 * * *'
+  workflow_dispatch: # Allows manual trigger for testing
+
+jobs:
+  check-and-remind:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run commit checker
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+        run: node index.js
