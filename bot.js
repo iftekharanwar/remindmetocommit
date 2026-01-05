@@ -1,6 +1,7 @@
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const { generateProjectIdea, getUserGitHubProfile } = require('./ai-service');
+const { getChatResponse, clearHistory } = require('./chat-service');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
@@ -161,6 +162,82 @@ bot.onText(/\/stats/, async (msg) => {
     }
 });
 
-console.log('🤖 Bot is running! Send commands on Telegram...');
-console.log('Available commands: /start, /help, /suggest, /stats');
+// Command: /clear - Clear conversation history
+bot.onText(/\/clear/, (msg) => {
+    const chatId = msg.chat.id;
+    clearHistory(chatId);
+    bot.sendMessage(chatId, '🗑️ Conversation history cleared! Starting fresh.');
+});
+
+function splitMessage(text, maxLength = 4000) {
+    if (text.length <= maxLength) {
+        return [text];
+    }
+
+    const parts = [];
+    let current = '';
+
+    const paragraphs = text.split('\n\n');
+
+    for (const paragraph of paragraphs) {
+        if ((current + paragraph).length > maxLength) {
+            if (current) parts.push(current.trim());
+            current = paragraph + '\n\n';
+        } else {
+            current += paragraph + '\n\n';
+        }
+    }
+
+    if (current) parts.push(current.trim());
+    return parts;
+}
+
+function escapeMarkdown(text) {
+    return text.replace(/([_*\[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
+}
+
+bot.on('message', async (msg) => {
+    const chatId = msg.chat.id;
+    const text = msg.text;
+
+    if (text && text.startsWith('/')) {
+        return;
+    }
+
+    if (!text) {
+        return;
+    }
+
+    try {
+        bot.sendChatAction(chatId, 'typing');
+
+        const profile = await getUserGitHubProfile(GITHUB_USERNAME, GITHUB_TOKEN);
+
+        const response = await getChatResponse(chatId, text, profile);
+
+        const messageParts = splitMessage(response);
+
+        for (let i = 0; i < messageParts.length; i++) {
+            const part = messageParts[i];
+
+            try {
+                await bot.sendMessage(chatId, part, { parse_mode: 'Markdown' });
+            } catch (markdownError) {
+                console.log('Markdown parsing failed, sending as plain text');
+                await bot.sendMessage(chatId, part);
+            }
+
+            if (i < messageParts.length - 1) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        }
+    } catch (error) {
+        console.error('Error handling message:', error);
+        bot.sendMessage(chatId, '❌ Sorry, I encountered an error. Please try again!');
+    }
+});
+
+console.log('🤖 Bot is running! Send commands or chat naturally...');
+console.log('Commands: /start, /help, /suggest, /stats, /clear');
+console.log('💬 You can also just chat with me about anything coding-related!');
 console.log('Press Ctrl+C to stop.');
