@@ -2,7 +2,11 @@ name: Daily GitHub Commit Reminder
 
 on:
   schedule:
-    # Runs at 8:00 PM IST (14:30 UTC) every day
+    # Morning
+    - cron: '30 4 * * *'
+    # Afternoon
+    - cron: '30 9 * * *'
+    # Evening
     - cron: '30 14 * * *'
   workflow_dispatch: # Allows manual trigger for testing
 

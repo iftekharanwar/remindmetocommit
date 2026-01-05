@@ -5,8 +5,9 @@ package-lock.json
 # Environment variables (IMPORTANT - keeps secrets safe!)
 .env
 
-# Stats data
+# Stats and user data
 stats.json
+user-settings.json
 
 # Logs
 *.log
