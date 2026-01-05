@@ -9,6 +9,13 @@ package-lock.json
 stats.json
 user-settings.json
 
+# Test files
+test-*.js
+
+# Deployment files (not needed for Railway)
+Procfile
+render.yaml
+
 # Logs
 *.log
 npm-debug.log*
