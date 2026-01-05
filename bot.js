@@ -135,6 +135,7 @@ bot.onText(/\/start/, (msg) => {
         `/suggest - Get a new project idea\n` +
         `/stats - View your GitHub stats\n` +
         `/timezone - Set your timezone\n` +
+        `/about - How this bot works\n` +
         `/clear - Clear chat history\n` +
         `/help - Show help message\n\n` +
         `*Reminder Schedule (3x daily):*\n` +
@@ -161,17 +162,18 @@ bot.onText(/\/help/, (msg) => {
         `/suggest - Get an AI-generated project idea\n` +
         `/stats - View your GitHub statistics and streak\n` +
         `/timezone - Set your timezone\n` +
+        `/about - Understand how this bot works\n` +
         `/clear - Clear conversation history\n` +
         `/help - Show this help message\n\n` +
         `*How it works:*\n` +
-        `• I check 3 times daily if you've committed:\n` +
+        `• Automated checks 3 times daily:\n` +
         `  - ${time1} (Morning)\n` +
         `  - ${time2} (Afternoon)\n` +
         `  - ${time3} (Evening)\n` +
-        `• If not, I send you a unique AI-generated project idea\n` +
-        `• Ideas are tailored to your GitHub profile and skills\n` +
-        `• You can also chat with me naturally about coding!\n\n` +
-        `Keep coding! 💪`;
+        `• If you haven't committed, you get a project idea\n` +
+        `• Ideas are tailored to your GitHub profile\n` +
+        `• Chat with me anytime about coding questions!\n\n` +
+        `Type /about to learn more about the system. Keep coding! 💪`;
 
     bot.sendMessage(chatId, helpMessage, { parse_mode: 'Markdown' });
 });
@@ -273,6 +275,24 @@ bot.onText(/\/timezone(?:\s+(.+))?/, (msg, match) => {
     } catch (error) {
         bot.sendMessage(chatId, `❌ Invalid timezone: \`${timezone}\`\n\nPlease use a valid timezone from the [IANA database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).`, { parse_mode: 'Markdown', disable_web_page_preview: true });
     }
+});
+
+// Command: /about - Explain how the bot works
+bot.onText(/\/about/, (msg) => {
+    const chatId = msg.chat.id;
+    const aboutMessage = `*How This Bot Works*\n\n` +
+        `This system has two parts:\n\n` +
+        `*1. Automated Commit Checker (GitHub Actions)*\n` +
+        `• Runs 3x daily automatically\n` +
+        `• Checks if you've committed to GitHub\n` +
+        `• Sends you reminders with AI project ideas if you haven't\n\n` +
+        `*2. Conversational AI (Me!)*\n` +
+        `• Available 24/7 for coding questions\n` +
+        `• Helps with debugging, architecture, best practices\n` +
+        `• Generates project ideas on demand\n\n` +
+        `Note: I can't manually check your commits - that's handled automatically by GitHub Actions. I'm here to chat and help with coding! 💬`;
+
+    bot.sendMessage(chatId, aboutMessage, { parse_mode: 'Markdown' });
 });
 
 // Command: /clear - Clear conversation history
