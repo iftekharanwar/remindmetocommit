@@ -5,10 +5,15 @@ An intelligent Telegram bot that helps you maintain your GitHub commit streak wi
 ## Features
 
 ✅ **Automated Daily Reminders** - Get notified 3x daily (morning, afternoon, evening) if you haven't committed
+
 🤖 **AI Project Suggestions** - Receive unique, personalized project ideas powered by Groq and Gemini AI
+
 💬 **Conversational AI** - Chat naturally about coding questions, debugging, and architecture
+
 📊 **GitHub Stats Tracking** - Monitor your commit streak and repository statistics
+
 🌍 **Timezone Support** - Automatic timezone detection and conversion
+
 🔄 **Multi-API Fallback** - Groq → Gemini → JSON fallback ensures always-available suggestions
 
 ## Commands
