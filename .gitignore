@@ -5,6 +5,9 @@ package-lock.json
 # Environment variables (IMPORTANT - keeps secrets safe!)
 .env
 
+# Stats data
+stats.json
+
 # Logs
 *.log
 npm-debug.log*

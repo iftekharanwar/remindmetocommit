@@ -3,6 +3,7 @@ const axios = require('axios');
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
+const { generateProjectIdea } = require('./ai-service');
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -59,9 +60,10 @@ async function main() {
         await sendTelegramNotification('✅ Great job! You already committed today. Streak maintained! 🔥');
     } else {
         console.log('❌ No commit found for today.');
-        const project = getRandomProjectIdea();
+        console.log('Generating AI-powered project idea...');
+        const project = await generateProjectIdea(GITHUB_USERNAME, GITHUB_TOKEN);
 
-        const message = `🚨 *Reminder: Commit Today!* 🚨\n\nYou haven't committed yet today. Here's a project idea:\n\n*${project.title}*\n${project.description}\n\n*Tech Stack:* ${project.techStack}\n*Difficulty:* ${project.difficulty}\n\nLet's keep that streak alive! 💪`;
+        const message = `🚨 *Reminder: Commit Today!* 🚨\n\nYou haven't committed yet today. Here's an AI-generated project idea tailored for you:\n\n*${project.title}*\n${project.description}\n\n*Tech Stack:* ${project.techStack}\n*Difficulty:* ${project.difficulty}\n\nLet's keep that streak alive! 💪`;
 
         await sendTelegramNotification(message);
     }
