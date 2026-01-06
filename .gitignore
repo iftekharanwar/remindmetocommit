@@ -8,6 +8,7 @@ package-lock.json
 # Stats and user data
 stats.json
 user-settings.json
+notification-log.json
 
 # Test files
 test-*.js
