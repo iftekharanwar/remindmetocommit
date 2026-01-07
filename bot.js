@@ -2,6 +2,7 @@ require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const { generateProjectIdea, getUserGitHubProfile } = require('./ai-service');
 const { getChatResponse, clearHistory } = require('./chat-service');
+const { canSendMessage, incrementMessage } = require('./rate-limiter');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
@@ -341,8 +342,15 @@ bot.on('message', async (msg) => {
         return;
     }
 
+    if (!canSendMessage(chatId)) {
+        bot.sendMessage(chatId, '⚠️ You\'ve reached the daily message limit. The bot will reset tomorrow. Thanks for using it responsibly!');
+        return;
+    }
+
     try {
         bot.sendChatAction(chatId, 'typing');
+
+        incrementMessage(chatId);
 
         const profile = await getUserGitHubProfile(GITHUB_USERNAME, GITHUB_TOKEN);
 

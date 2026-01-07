@@ -1,4 +1,5 @@
 const Groq = require('groq-sdk');
+const { canMakeAIRequest, incrementAIRequest } = require('./rate-limiter');
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const conversationHistory = new Map();
@@ -49,8 +50,13 @@ Remember: You're the coding assistant part of the system. Commit tracking happen
             content: userMessage
         });
 
-        // Keep only last 10 messages (5 exchanges) to avoid token limits
         const recentHistory = history.slice(-11);
+
+        if (!canMakeAIRequest()) {
+            return "⚠️ Daily AI request limit reached. The bot will reset tomorrow. For now, try basic commands like /suggest, /stats, or /help!";
+        }
+
+        incrementAIRequest();
 
         const completion = await groq.chat.completions.create({
             messages: recentHistory,

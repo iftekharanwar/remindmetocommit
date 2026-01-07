@@ -9,6 +9,7 @@ package-lock.json
 stats.json
 user-settings.json
 notification-log.json
+rate-limit.json
 
 # Test files
 test-*.js
